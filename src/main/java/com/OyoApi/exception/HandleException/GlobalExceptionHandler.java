@@ -1,5 +1,8 @@
-package com.OyoApi.exception;
+package com.OyoApi.exception.HandleException;
 
+import com.OyoApi.exception.BookingNotFoundException;
+import com.OyoApi.exception.EntityNotFoundException;
+import com.OyoApi.exception.ResourceNotFoundException;
 import jakarta.persistence.Column;
 import org.aspectj.lang.annotation.AdviceName;
 import org.springframework.http.HttpStatus;
@@ -30,6 +33,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BookingNotFoundException.class)
     public ResponseEntity<Object> BookingNotFoundException(
           BookingNotFoundException e,
+            WebRequest request) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Object> EntityNotFoundException(
+            EntityNotFoundException e,
             WebRequest request) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 

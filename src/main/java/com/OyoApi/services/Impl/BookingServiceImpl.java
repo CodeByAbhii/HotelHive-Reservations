@@ -63,18 +63,28 @@ public class BookingServiceImpl implements BookingService {
         return dto;
     }
 
-    public void confirmBooking(long id) {
+    public void confirmBooking(Long id) {
 
         Booking booking = bookingRepository.getBookingById(id);
-        booking.setConfirmed(true);
-
-        // Save the updated booking
-        bookingRepository.save(booking);
+        if (booking != null) {
+            booking.setConfirmed(true);
+            // Save the updated booking
+            bookingRepository.save(booking);
+        }else{
+            throw new EntityNotFoundException("Booking not found with ID: " + id);
+        }
     }
 
-    public void cancelBooking(long id) {
+    public void cancelBooking(Long id) {
 
         Booking booking = bookingRepository.getBookingById(id);
+        if (booking != null) {
+            booking.setConfirmed(false);
+            // Save the updated booking
+            bookingRepository.save(booking);
+        }else{
+            throw new EntityNotFoundException("Booking not found with ID: " + id);
+        }
         bookingRepository.delete(booking);
     }
 }

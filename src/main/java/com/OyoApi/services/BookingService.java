@@ -13,7 +13,7 @@ public interface BookingService {
 
     public BookingDto makeBooking(long roomId, long cId, BookingDto bookingDto);
 
-    public void confirmBooking(long id);
+    public void confirmBooking(Long id);
 
-    void cancelBooking(long id);
+    void cancelBooking(Long id);
 }

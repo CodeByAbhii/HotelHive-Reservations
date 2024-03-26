@@ -35,4 +35,22 @@ public class CustomerController {
         List<Customer> allCustomer = customerService.getAllCustomer();
         return new ResponseEntity<>(allCustomer , HttpStatus.OK);
     }
+    //http://localhost:8080/api/customer/1
+    @DeleteMapping
+    public ResponseEntity<String> deleteById(@PathVariable long cId){
+        customerService.deleteById(cId);
+        return new ResponseEntity<>(" Customer is Deleted!!" , HttpStatus.OK);
+    }
+    //http://localhost:8080/api/customer?cId=1
+    @PutMapping
+    public ResponseEntity<Customer> updateById(@RequestParam long cId, @RequestBody Customer customer){
+        Customer customer1 = customerService.updateCustomer(cId, customer);
+        return new ResponseEntity<>(customer1, HttpStatus.OK);
+    }
+    //http://localhost:8080/api/customer/1
+    @GetMapping
+    public ResponseEntity<Customer> getById(@PathVariable long cId){
+        Customer customer = customerService.getById(cId);
+        return new ResponseEntity<>(customer , HttpStatus.OK);
+    }
 }
