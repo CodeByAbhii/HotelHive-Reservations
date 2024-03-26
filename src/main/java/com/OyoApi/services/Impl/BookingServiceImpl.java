@@ -34,7 +34,7 @@ public class BookingServiceImpl implements BookingService {
 
 
 
-    public BookingDto makeBooking(Long roomId, Long cId, BookingDto bookingDto) {
+    public BookingDto makeBooking(long roomId, long cId, BookingDto bookingDto) {
         Customer customer1 = customerRepository.findById(cId).orElseThrow(
                 () -> new EntityNotFoundException("Customer not found"));
 
@@ -63,7 +63,7 @@ public class BookingServiceImpl implements BookingService {
         return dto;
     }
 
-    public void confirmBooking(Long id) {
+    public void confirmBooking(long id) {
 
         Booking booking = bookingRepository.getBookingById(id);
         booking.setConfirmed(true);
@@ -72,7 +72,7 @@ public class BookingServiceImpl implements BookingService {
         bookingRepository.save(booking);
     }
 
-    public void cancelBooking(Long id) {
+    public void cancelBooking(long id) {
 
         Booking booking = bookingRepository.getBookingById(id);
         bookingRepository.delete(booking);

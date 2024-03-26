@@ -11,9 +11,9 @@ import java.time.LocalDate;
 
 public interface BookingService {
 
-    public BookingDto makeBooking(Long roomId, Long cId, BookingDto bookingDto);
+    public BookingDto makeBooking(long roomId, long cId, BookingDto bookingDto);
 
-    public void confirmBooking(Long id);
+    public void confirmBooking(long id);
 
-    void cancelBooking(Long id);
+    void cancelBooking(long id);
 }
