@@ -19,6 +19,14 @@ public class RoomController {
         this.roomService = roomService;
     }
 
+    //http://localhost:8080/api/rooms?cId=1
+    @PostMapping
+    public ResponseEntity<Room> createRoomById(
+            @RequestParam Long cId,
+            @RequestBody Room room) {
+        Room createdRoom = roomService.createRoom(cId, room);
+        return new ResponseEntity<>(createdRoom, HttpStatus.CREATED);
+    }
 
     //http://localhost:8080/api/rooms
     @GetMapping
@@ -28,11 +36,7 @@ public class RoomController {
 
     }
     //http://localhost:8080/api/rooms
-    @PostMapping
-    public ResponseEntity<Room> createRoom(@RequestBody Room room) {
-        Room createdRoom = roomService.createRoom(room);
-        return new ResponseEntity<>(createdRoom, HttpStatus.CREATED);
-    }
+   
     @DeleteMapping("/{roomId}")
     public ResponseEntity<String> deleteRoom(@PathVariable("roomId") Long roomId) {
         roomService.deleteRoom(roomId);

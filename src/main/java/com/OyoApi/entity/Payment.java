@@ -60,5 +60,7 @@ public class Payment {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id")
     private Booking booking;
+
+
 // Getters and setters
 }

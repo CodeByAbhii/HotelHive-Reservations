@@ -43,20 +43,33 @@ public class BookingServiceImpl implements BookingService {
 
         // Create the new booking entity
         Booking booking = new Booking();
-        booking.setRoom(room1);
-        booking.setCustomer(customer1);
+        booking.setId(bookingDto.getId());
+        booking.setCustomerName(bookingDto.getCustomerName());
         booking.setCheckInDate(bookingDto.getCheckInDate());
         booking.setCheckOutDate(bookingDto.getCheckOutDate());
         booking.setConfirmed(false);
+        booking.setRoomNumber(bookingDto.getRoom().getRoomNumber());
+        booking.setRoomType(bookingDto.getRoom().getRoomType());
+        booking.setEmail(bookingDto.getEmail());
+        booking.setMobile(bookingDto.getCustomer().getMobile());
+        booking.setPrice(bookingDto.getPrice());
+        booking.setRoom(room1);
+        booking.setCustomer(customer1);
 
         // Save the booking
         Booking saveBooking = bookingRepository.save(booking);
 
         BookingDto dto = new BookingDto();
         dto.setId(saveBooking.getId());
+        dto.setCustomerName(saveBooking.getCustomerName());
         dto.setCheckInDate(saveBooking.getCheckInDate());
         dto.setCheckOutDate(saveBooking.getCheckOutDate());
         dto.setConfirmed(false);
+        dto.setRoomNumber(saveBooking.getRoom().getRoomNumber());
+        dto.setRoomType(saveBooking.getRoom().getRoomType());
+        dto.setEmail(saveBooking.getEmail());
+        dto.setMobile(saveBooking.getCustomer().getMobile());
+        dto.setPrice(saveBooking.getPrice());
         dto.setRoom(room1);
         dto.setCustomer(customer1);
 

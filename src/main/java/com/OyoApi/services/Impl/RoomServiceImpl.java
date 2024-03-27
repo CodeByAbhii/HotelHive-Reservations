@@ -1,7 +1,9 @@
 package com.OyoApi.services.Impl;
 
+import com.OyoApi.entity.Customer;
 import com.OyoApi.entity.Room;
 import com.OyoApi.exception.EntityNotFoundException;
+import com.OyoApi.repository.CustomerRepository;
 import com.OyoApi.repository.RoomRepository;
 import com.OyoApi.services.RoomService;
 import org.springframework.http.HttpStatus;
@@ -15,9 +17,14 @@ public class RoomServiceImpl implements RoomService {
 
     private RoomRepository roomRepository;
 
-    public RoomServiceImpl(RoomRepository roomRepository) {
+    private CustomerRepository customerRepository;
+
+    public RoomServiceImpl(RoomRepository roomRepository, CustomerRepository customerRepository) {
         this.roomRepository = roomRepository;
+        this.customerRepository = customerRepository;
     }
+
+
 
     @Override
     public List<Room> getAllRoom() {
@@ -54,12 +61,14 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room createRoom(Room room) {
-        Room room1 = new Room();
-        room1.setRoomId(room.getRoomId());
-        room1.setRoomType(room.getRoomType());
-        room1.setRoomNumber(room.getRoomNumber());
-        Room saveRoom = roomRepository.save(room1);
-        return saveRoom;
+    public Room createRoom(Long cId, Room room) {
+        Customer customer = customerRepository.findById(cId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found with ID: " + cId));
+
+        room.setCustomer(customer);
+        return roomRepository.save(room);
     }
-}
+
+
+    }
+

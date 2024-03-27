@@ -48,7 +48,7 @@ public class CustomerController {
         return new ResponseEntity<>(customer1, HttpStatus.OK);
     }
     //http://localhost:8080/api/customer/1
-    @GetMapping
+    @GetMapping("/{cId}")
     public ResponseEntity<Customer> getById(@PathVariable long cId){
         Customer customer = customerService.getById(cId);
         return new ResponseEntity<>(customer , HttpStatus.OK);

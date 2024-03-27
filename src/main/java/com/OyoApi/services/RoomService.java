@@ -14,5 +14,5 @@ public interface RoomService {
 
     Room getRoomById(Long id);
 
-    Room createRoom(Room room);
+    Room createRoom(Long cId ,Room room);
 }

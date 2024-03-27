@@ -17,9 +17,15 @@ import java.time.LocalDate;
 public class BookingDto {
 
     private long id;
+    private String customerName;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private boolean isConfirmed;
+    private String roomNumber;
+    private String roomType;
+    private String email;
+    private long mobile;
+    private double price;
     private Room room;
     private Customer customer;
 

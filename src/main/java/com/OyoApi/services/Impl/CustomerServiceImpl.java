@@ -31,8 +31,10 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer createCustomer(Customer customer) {
         Customer customer1 = new Customer();
         customer1.setCId(customer.getCId());
-        customer1.setName(customer.getName());
+        customer1.setFirstName(customer.getFirstName());
+        customer1.setLastName(customer.getLastName());
         customer1.setEmail(customer.getEmail());
+        customer1.setMobile(customer.getMobile());
 
         Customer  saveCustomer = customerRepository.save(customer1);
         return  saveCustomer;
@@ -66,7 +68,8 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerNotFound != null) {
             Customer customer1 = customerRepository.findById(cId).get();
             customer1.setCId(customer.getCId());
-            customer1.setName(customer.getName());
+            customer1.setFirstName(customer.getFirstName());
+            customer1.setLastName(customer.getLastName());
             customer1.setEmail(customer.getEmail());
             customer1.setMobile(customer.getMobile());
 

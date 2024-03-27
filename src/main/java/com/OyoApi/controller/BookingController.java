@@ -36,7 +36,7 @@ public class BookingController {
 
     // http://localhost:8080/api/booking/confirm/{id}
     @PostMapping("/confirm/{id}")
-    public ResponseEntity<?> confirmBooking(@PathVariable long id) {
+    public ResponseEntity<?> confirmBooking(@PathVariable Long id) {
         try {
             bookingService.confirmBooking(id);
             return new ResponseEntity<>("Booking confirmed successfully", HttpStatus.OK);
